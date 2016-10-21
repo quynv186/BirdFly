@@ -63,25 +63,50 @@ class ViewController: UIViewController {
 //        })
         
         UIView.animate(withDuration: 4, animations: {
-                self.bird.center = CGPoint(x: self.view.bounds.size.width, y: self.view.bounds.size.height)
+                self.bird.center = CGPoint(x: self.view.bounds.size.width - 50, y: self.view.bounds.size.height - 50)
             }, completion: { (finished) in
                 self.bird.transform = self.bird.transform.scaledBy(x: -1, y: 1).concatenating(CGAffineTransform(rotationAngle: 0))
                 
                 UIView.animate(withDuration: 4, animations: {
-                        self.bird.center = CGPoint(x: 0, y: self.view.bounds.size.height)
+                        self.bird.center = CGPoint(x: 50, y: self.view.bounds.size.height - 50)
                     }, completion: { (finished) in
                         self.bird.transform = self.bird.transform.scaledBy(x: -1, y: 1).concatenating(CGAffineTransform(rotationAngle: -45))
                         
                         UIView.animate(withDuration: 4, animations: {
-                                self.bird.center = CGPoint(x: self.view.bounds.size.width, y: 0)
+                                self.bird.center = CGPoint(x: self.view.bounds.size.width - 50, y: 50)
                             }, completion: { (finished) in
                                 self.bird.transform = self.bird.transform.scaledBy(x: -1, y: 1).concatenating(CGAffineTransform(rotationAngle: 45))
                                 
                                 UIView.animate(withDuration: 4, animations: {
-                                        self.bird.center = CGPoint(x: 0, y: 0)
+                                        self.bird.center = CGPoint(x: 50, y: 50)
                                     }, completion: { (finished) in
-                                        self.bird.transform = CGAffineTransform.identity
-                                        self.flyUpAndDown()
+                                        self.bird.transform = self.bird.transform.scaledBy(x: -1, y: 1).concatenating(CGAffineTransform(rotationAngle: 45))
+                                        
+                                        UIView.animate(withDuration: 4, animations: {
+                                                self.bird.center = CGPoint(x: 50, y: self.view.bounds.size.height - 50)
+                                            }, completion: { (finished) in
+                                                self.bird.transform = CGAffineTransform.identity
+                                                
+                                                UIView.animate(withDuration: 4, animations: {
+                                                        self.bird.center = CGPoint(x: self.view.bounds.size.width - 50, y: self.view.bounds.size.height - 50)
+                                                    }, completion: { (finished) in
+                                                        self.bird.transform = self.bird.transform.scaledBy(x: -1, y: 1).concatenating(CGAffineTransform(rotationAngle: 90))
+                                                        
+                                                        UIView.animate(withDuration: 4, animations: {
+                                                                self.bird.center = CGPoint(x: self.view.bounds.size.width - 50, y: 50)
+                                                            }, completion: { (finished) in
+                                                                self.bird.transform = CGAffineTransform.identity
+                                                                self.bird.transform = self.bird.transform.scaledBy(x: -1, y: 1).concatenating(CGAffineTransform(rotationAngle: 0))
+                                                                
+                                                                UIView.animate(withDuration: 4, animations: {
+                                                                    self.bird.center = CGPoint(x: 50, y: 50)
+                                                                    }, completion: { (finished) in
+                                                                        self.bird.transform = CGAffineTransform.identity
+                                                                        self.flyUpAndDown()
+                                                                })
+                                                        })
+                                                })
+                                        })
                                 })
                         })
                 })
